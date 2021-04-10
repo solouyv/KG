@@ -18,7 +18,6 @@ def find_lines(array):
             if not in_figure:
                 try:
                     if is_black(pixel) and not is_black(row[k + 1]):
-                        # import debug
                         list_of_lines.append([k + 1, i])
                         in_figure = True
                 except IndexError:
