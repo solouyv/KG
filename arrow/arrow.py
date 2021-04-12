@@ -14,25 +14,35 @@ lines = (
 )
 
 
-def find_pixels(p1, p2):
+def find_pixels(line):
+    p1 = line[0]
+    p2 = line[1]
     pixels = []
     dx = p2[0] - p1[0]
     dy = p2[1] - p1[1]
     xerr = yerr = 0
 
-    if dx > 0: incX = 1
-    elif dx == 0: incX = 0
-    elif dx < 0: incX = -1
+    if dx > 0:
+        incX = 1
+    elif dx == 0:
+        incX = 0
+    elif dx < 0:
+        incX = -1
 
-    if dy > 0: incY = 1
-    elif dy == 0: incY = 0
-    elif dy < 0: incY = -1
+    if dy > 0:
+        incY = 1
+    elif dy == 0:
+        incY = 0
+    elif dy < 0:
+        incY = -1
 
     dx = abs(dx)
     dy = abs(dy)
 
-    if dx > dy: d = dx
-    else: d = dy
+    if dx > dy:
+        d = dx
+    else:
+        d = dy
 
     x = p1[0]
     y = p1[1]
@@ -52,7 +62,8 @@ def find_pixels(p1, p2):
             y += incY
 
         pixels.append((x, y))
-        return pixels
+
+    return pixels
 
 
 def write_line(pixels, img, color):
@@ -64,8 +75,7 @@ if __name__ == '__main__':
     img = Image.new('RGB', (200, 100), (255, 255, 255))
 
     for line in lines:
-        pixels = find_pixels(*line)
+        pixels = find_pixels(line)
         write_line(pixels, img, (0, 0, 255))
 
     img.save('arrow.bmp', 'BMP')
-    img.show()
